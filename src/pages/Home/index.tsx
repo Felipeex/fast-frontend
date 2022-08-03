@@ -5,7 +5,7 @@ import abstractRight from "../../source/abstract-right.svg";
 
 export function Home() {
   return (
-    <main className="overflow-hidden">
+    <main id="home">
       <Header />
       <div className="flex absolute w-full items-center justify-between mt-[230px] px-[10%] z-[-1] select-none">
         <img src={abstractLeft} />
