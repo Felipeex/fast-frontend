@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+}
+
+body {
+  @apply bg-gray-100 text-black-600;
+  -webkit-font-smoothing: antialiased;
+}
