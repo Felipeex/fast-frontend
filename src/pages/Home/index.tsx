@@ -7,7 +7,7 @@ export function Home() {
   return (
     <main className="overflow-hidden">
       <Header />
-      <div className="flex absolute w-full items-center justify-between mt-[230px] px-[10%]">
+      <div className="flex absolute w-full items-center justify-between mt-[230px] px-[10%] z-[-1] select-none">
         <img src={abstractLeft} />
         <img src={abstractRight} />
       </div>
