@@ -1,4 +1,4 @@
-import { EnvelopeSimple, Password } from "phosphor-react";
+import { CircleNotch, EnvelopeSimple, Password } from "phosphor-react";
 
 import { Input } from "./Input";
 import { LoginIcon } from "./LoginIcon";
@@ -7,30 +7,104 @@ import Apple from "../source/apple-icon.svg";
 import Google from "../source/google-icon.svg";
 import Twitter from "../source/twitter-icon.svg";
 import SignUpWallpaper from "../source/signup-wallpaper.svg";
+import { useEffect, useState } from "react";
+import { ValidadeEmail, ValidadePassword } from "../helpers/Patterns";
+import { signInEmailAndPassword } from "../helpers/util";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   setIsLogin: any;
 }
 
+interface InputValidate {
+  email?: boolean;
+  password?: boolean;
+}
+
 export function SignIn({ setIsLogin }: Props) {
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [inputValidate, setInputValidate] = useState<InputValidate>({});
+
+  const [loading, setLoading] = useState(false);
+
+  async function handleSignInEmailAndPassword(
+    event: React.MouseEvent<HTMLElement>
+  ) {
+    event.preventDefault();
+    setLoading(true);
+    try {
+      const signIn = await signInEmailAndPassword(email, password);
+      console.log(signIn);
+      setUser(signIn.user);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    if (ValidadeEmail(email)) {
+      setInputValidate((inputValidate) => ({ ...inputValidate, email: true }));
+    } else {
+      setInputValidate((inputValidate) => ({ ...inputValidate, email: false }));
+    }
+
+    if (ValidadePassword(password)) {
+      setInputValidate((inputValidate) => ({
+        ...inputValidate,
+        password: true,
+      }));
+    } else {
+      setInputValidate((inputValidate) => ({
+        ...inputValidate,
+        password: true,
+      }));
+    }
+  }, [email, password]);
+
   return (
     <main className="w-full flex justify-around overflow-hidden">
       <form className="login__animation">
         <h1 className="font-medium text-[50px]">Fazer Login</h1>
         <Input
+          type="email"
           inputName="Email"
           inputPlaceholder="Digite seu e-mail"
           inputIcon={<EnvelopeSimple size={22} />}
+          setValue={setEmail}
+          inputValidate={inputValidate?.email}
         />
         <Input
+          type="password"
           inputName="Senha"
           inputPlaceholder="Digite sua senha"
           inputIcon={<Password size={22} />}
           isInputLabel={true}
           inputLabel="Esqueci minha senha"
+          setValue={setPassword}
+          inputValidate={inputValidate?.password}
         />
-        <button className="w-full bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600  ">
-          ENTRAR
+        <button
+          className="w-full flex items-center justify-center bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600 disabled:opacity-50 disabled:hover:bg-green-600"
+          disabled={
+            loading ? true : !inputValidate.email || !inputValidate.password
+          }
+          onClick={handleSignInEmailAndPassword}
+        >
+          {loading ? (
+            <CircleNotch
+              size={20}
+              className="loading text-white"
+              weight="bold"
+            />
+          ) : (
+            "ENTRAR"
+          )}
         </button>
         <p className="text-center mt-2 text-gray-600">
           Não tenho conta?

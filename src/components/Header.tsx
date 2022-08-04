@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import Logo from "../source/logo-fast.svg";
 
 interface Props {
@@ -6,6 +7,8 @@ interface Props {
 }
 
 export function Header({ isFixed }: Props) {
+  const { user } = useAuth();
+
   return (
     <header
       className={`flex items-center justify-around mt-[40px] transition-all ${

@@ -1,4 +1,4 @@
-import { EnvelopeSimple, Password } from "phosphor-react";
+import { CircleNotch, EnvelopeSimple, Password } from "phosphor-react";
 
 import { Input } from "./Input";
 import { LoginIcon } from "./LoginIcon";
@@ -7,64 +7,119 @@ import Apple from "../source/apple-icon.svg";
 import Google from "../source/google-icon.svg";
 import Twitter from "../source/twitter-icon.svg";
 import SignInWallpaper from "../source/signin-wallpaper.svg";
+
 import { createUserEmailAndPassword } from "../helpers/util";
+import { useEffect, useState } from "react";
+import { ValidadeEmail, ValidadePassword } from "../helpers/Patterns";
+import { useNavigate } from "react-router-dom";
+import { ValidadeInputsSignUp } from "../helpers/factories";
 
 interface Props {
   setIsLogin: any;
 }
 
+interface InputValidate {
+  email?: boolean;
+  password?: boolean;
+  repeatPassword?: boolean;
+}
+
+interface inputMessage {
+  email?: string;
+  password?: string;
+  repeatPassword?: string;
+}
+
 export function SignUp({ setIsLogin }: Props) {
-  async function createEmailAndPassword(event: Event) {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [inputValidate, setInputValidate] = useState<InputValidate>({});
+  const [inputMessage, setInputMessage] = useState<inputMessage>({});
+
+  const [loading, setLoading] = useState(false);
+
+  async function handleCreateEmailAndPassword(
+    event: React.MouseEvent<HTMLElement>
+  ) {
     event.preventDefault();
+    setLoading(true);
     try {
-      const created = await createUserEmailAndPassword(
-        "felipeoficial455@gmail.com",
-        ""
-      );
-      console.log(created);
+      await createUserEmailAndPassword(email, password);
+      navigate("/login?type=signIn");
     } catch (err: any) {
-      console.log(err.code);
-      if (err.code === "auth/weak-password")
-        return console.log("Sua senha deve conter pelo menos 6 dígitos.");
-      if (err.code === "auth/invalid-email")
-        return console.log("Email invalido, Tente Novamente.");
-      if (err.code === "auth/email-already-in-use")
-        return console.log("Esse email já fou utilizado, Tente outro.");
-      if (err.code === "auth/internal-error")
-        return console.log(
-          "Aconteceu um erro, Tente novamente ou volte mas tarde."
-        );
+      console.log(err);
     }
+    setLoading(false);
   }
+
+  useEffect(() => {
+    ValidadeInputsSignUp(
+      email,
+      password,
+      repeatPassword,
+      inputValidate,
+      setInputValidate,
+      inputMessage,
+      setInputMessage
+    );
+  }, [email, password, repeatPassword]);
 
   return (
     <main className="w-full flex justify-around overflow-hidden">
       <form className="login__animation">
         <h1 className="font-medium text-[50px]">Crie sua conta</h1>
         <Input
+          type="email"
           inputName="Email"
           inputPlaceholder="Digite seu e-mail"
           inputIcon={<EnvelopeSimple size={22} />}
+          setValue={setEmail}
+          inputValidate={inputValidate?.email}
         />
         <Input
+          type="password"
           inputName="Senha"
           inputPlaceholder="Digite sua senha"
           inputIcon={<Password size={22} />}
           isInputLabel={false}
           inputLabel="Esqueci minha senha"
+          setValue={setPassword}
+          inputValidate={inputValidate?.password}
+          inputMessage={inputMessage?.password}
         />
         <Input
+          type="password"
           inputName="Confirmar senha"
           inputPlaceholder="Digite sua senha"
           inputIcon={<Password size={22} />}
           isInputLabel={false}
           inputLabel="Esqueci minha senha"
+          setValue={setRepeatPassword}
+          inputValidate={inputValidate?.repeatPassword}
+          inputMessage={inputMessage?.repeatPassword}
         />
         <button
-          onClick={createEmailAndPassword}
-          className="w-full bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600"
+          onClick={handleCreateEmailAndPassword}
+          disabled={
+            loading
+              ? true
+              : !inputValidate.email ||
+                !inputValidate.password ||
+                !inputValidate.repeatPassword
+          }
+          className="w-full flex items-center justify-center bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600 disabled:opacity-50 disabled:hover:bg-green-600"
         >
-          ENTRAR
+          {loading ? (
+            <CircleNotch
+              size={20}
+              className="loading text-white"
+              weight="bold"
+            />
+          ) : (
+            "ENTRAR"
+          )}
         </button>
         <p className="text-center mt-2 text-gray-600">
           Já tenho uma conta?
