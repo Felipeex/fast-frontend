@@ -20,8 +20,8 @@ export function Header({ isFixed }: Props) {
       </div>
 
       <nav className="flex gap-[42px] text-gray-600 ast-none font-medium cursor-pointer">
-        <Link to="/">
-          <a href="#home">Home</a>
+        <Link to="/" className="active:text-black-700">
+          Home
         </Link>
         <a>Ferramentas</a>
         <a>Planos</a>

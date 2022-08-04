@@ -1,7 +1,9 @@
+import { ReactNode } from "react";
+
 interface Props {
   inputName: string;
   inputPlaceholder: string;
-  inputIcon: React.ReactNode;
+  inputIcon: ReactNode;
   inputLabel?: string;
   isInputLabel?: boolean;
 }

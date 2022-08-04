@@ -7,12 +7,36 @@ import Apple from "../source/apple-icon.svg";
 import Google from "../source/google-icon.svg";
 import Twitter from "../source/twitter-icon.svg";
 import SignInWallpaper from "../source/signin-wallpaper.svg";
+import { createUserEmailAndPassword } from "../helpers/util";
 
 interface Props {
   setIsLogin: any;
 }
 
 export function SignUp({ setIsLogin }: Props) {
+  async function createEmailAndPassword(event: Event) {
+    event.preventDefault();
+    try {
+      const created = await createUserEmailAndPassword(
+        "felipeoficial455@gmail.com",
+        ""
+      );
+      console.log(created);
+    } catch (err: any) {
+      console.log(err.code);
+      if (err.code === "auth/weak-password")
+        return console.log("Sua senha deve conter pelo menos 6 dígitos.");
+      if (err.code === "auth/invalid-email")
+        return console.log("Email invalido, Tente Novamente.");
+      if (err.code === "auth/email-already-in-use")
+        return console.log("Esse email já fou utilizado, Tente outro.");
+      if (err.code === "auth/internal-error")
+        return console.log(
+          "Aconteceu um erro, Tente novamente ou volte mas tarde."
+        );
+    }
+  }
+
   return (
     <main className="w-full flex justify-around overflow-hidden">
       <form className="login__animation">
@@ -36,7 +60,10 @@ export function SignUp({ setIsLogin }: Props) {
           isInputLabel={false}
           inputLabel="Esqueci minha senha"
         />
-        <button className="w-full bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600">
+        <button
+          onClick={createEmailAndPassword}
+          className="w-full bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600"
+        >
           ENTRAR
         </button>
         <p className="text-center mt-2 text-gray-600">

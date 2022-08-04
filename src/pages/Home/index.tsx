@@ -3,7 +3,6 @@ import { Header } from "../../components/Header";
 
 import abstractLeft from "../../source/abstract-left.svg";
 import abstractRight from "../../source/abstract-right.svg";
-
 export function Home() {
   const [headerFixed, setHeaderFixed] = useState(false);
 
