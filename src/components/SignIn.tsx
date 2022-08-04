@@ -41,7 +41,6 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
 
   useEffect(() => {
     ValidadeInputsSignIn(email, password, setInputValidate);
-    console.log(inputValidate);
   }, [email, password]);
 
   return (

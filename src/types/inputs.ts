@@ -16,3 +16,9 @@ export type isInputValidateType = (
   setInputValidate: (validator: (inputValidate: any) => any) => void,
   rest: object
 ) => void;
+
+export type ValidadeEmailAndPassword = (
+  email: string,
+  password: string,
+  setInputValidate: (validator: (inputValidate: any) => any) => void
+) => void;

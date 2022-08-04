@@ -1,77 +1,29 @@
 import {
   isInputValidateType,
+  ValidadeEmailAndPassword,
   ValidadeInputsSignInType,
   ValidadeInputsSignUpType,
 } from "../types/inputs";
 import { ValidadeEmail, ValidadePassword } from "./Patterns";
 
-export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
-  email,
-  password,
-  repeatPassword,
+export const isInputValidate: isInputValidateType = (
   setInputValidate,
-  setInputMessage
+  ...rest
 ) => {
-  if (ValidadeEmail(email)) {
-    setInputValidate((inputValidate) => ({
-      ...inputValidate,
-      email: true,
-    }));
-  } else {
-    setInputValidate((inputValidate) => ({
-      ...inputValidate,
-      email: false,
-    }));
-  }
-
-  if (ValidadePassword(password)) {
-    setInputMessage((inputMessage) => ({
-      ...inputMessage,
-      password: "",
-    }));
-  } else {
-    if (!password.length) return;
-    setInputMessage((inputMessage) => ({
-      ...inputMessage,
-      password: "Sua senha está muito Fraca!",
-    }));
-  }
-
-  if (ValidadePassword(password)) {
-    setInputValidate((inputValidate) => ({
-      ...inputValidate,
-      password: true,
-    }));
-  } else {
-    setInputValidate((inputValidate) => ({
-      ...inputValidate,
-      password: false,
-    }));
-  }
-
-  if (password !== repeatPassword) {
-    setInputMessage((inputMessage) => ({
-      ...inputMessage,
-      repeatPassword: "As senhas não sé considem",
-    }));
-    setInputValidate((inputValidate) => ({
-      ...inputValidate,
-      repeatPassword: false,
-    }));
-  } else if (ValidadePassword(password)) {
-    setInputValidate((inputValidate) => ({
-      ...inputValidate,
-      repeatPassword: true,
-    }));
-  } else {
-    setInputMessage((inputMessage) => ({
-      ...inputMessage,
-      repeatPassword: "",
-    }));
-  }
+  setInputValidate((inputValidate) => ({
+    ...inputValidate,
+    ...rest[0],
+  }));
 };
 
-export const ValidadeInputsSignIn: ValidadeInputsSignInType = (
+const isInputMessage: isInputValidateType = (setInputMessage, ...rest) => {
+  setInputMessage((inputMessage) => ({
+    ...inputMessage,
+    ...rest[0],
+  }));
+};
+
+const ValidadeEmailAndPassword: ValidadeEmailAndPassword = (
   email,
   password,
   setInputValidate
@@ -89,9 +41,20 @@ export const ValidadeInputsSignIn: ValidadeInputsSignInType = (
   }
 };
 
-const isInputValidate: isInputValidateType = (setInputValidate, ...rest) => {
-  setInputValidate((inputValidate) => ({
-    ...inputValidate,
-    ...rest[0],
-  }));
+export const ValidadeInputsSignIn: ValidadeInputsSignInType = (
+  email,
+  password,
+  setInputValidate
+) => {
+  ValidadeEmailAndPassword(email, password, setInputValidate);
+};
+
+export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
+  email,
+  password,
+  repeatPassword,
+  setInputValidate,
+  setInputMessage
+) => {
+  ValidadeEmailAndPassword(email, password, setInputValidate);
 };
