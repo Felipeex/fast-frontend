@@ -15,22 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { ValidadeInputsSignUp } from "../helpers/factories";
 
 import { SignInAndUpProps } from "../interfaces/Props";
-
-interface Props {
-  setIsLogin: any;
-}
-
-interface InputValidate {
-  email?: boolean;
-  password?: boolean;
-  repeatPassword?: boolean;
-}
-
-interface inputMessage {
-  email?: string;
-  password?: string;
-  repeatPassword?: string;
-}
+import { inputMessage, InputValidate } from "../interfaces/inputs";
 
 export function SignUp({ setIsLogin }: SignInAndUpProps) {
   const navigate = useNavigate();
@@ -57,15 +42,13 @@ export function SignUp({ setIsLogin }: SignInAndUpProps) {
   }
 
   useEffect(() => {
-    /* ValidadeInputsSignUp(
+    ValidadeInputsSignUp(
       email,
       password,
       repeatPassword,
-      inputValidate,
       setInputValidate,
-      inputMessage,
       setInputMessage
-    ); */
+    );
   }, [email, password, repeatPassword]);
 
   return (

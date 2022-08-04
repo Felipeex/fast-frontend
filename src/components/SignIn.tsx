@@ -13,11 +13,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ValidadeInputsSignIn } from "../helpers/factories";
 import { SignInAndUpProps } from "../interfaces/Props";
-
-interface InputValidate {
-  email?: boolean;
-  password?: boolean;
-}
+import { InputValidate } from "../interfaces/inputs";
 
 export function SignIn({ setIsLogin }: SignInAndUpProps) {
   const { setUser } = useAuth();
@@ -45,6 +41,7 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
 
   useEffect(() => {
     ValidadeInputsSignIn(email, password, setInputValidate);
+    console.log(inputValidate);
   }, [email, password]);
 
   return (
