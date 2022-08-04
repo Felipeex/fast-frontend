@@ -1,18 +1,6 @@
 import { Eye, EyeClosed } from "phosphor-react";
-import { ReactNode, useState } from "react";
-
-interface Props {
-  type: string;
-  inputName: string;
-  inputPlaceholder: string;
-  inputIcon: ReactNode;
-  inputPattern?: string;
-  inputLabel?: string;
-  isInputLabel?: boolean;
-  setValue: (newState: string) => void;
-  inputValidate?: boolean;
-  inputMessage?: string;
-}
+import { useState } from "react";
+import { InputProps } from "../interfaces/Props";
 
 export function Input({
   type,
@@ -25,7 +13,7 @@ export function Input({
   setValue,
   inputValidate,
   inputMessage,
-}: Props) {
+}: InputProps) {
   const [isEyeClosed, setIsEyeClosed] = useState(true);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {

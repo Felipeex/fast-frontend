@@ -8,21 +8,18 @@ import Google from "../source/google-icon.svg";
 import Twitter from "../source/twitter-icon.svg";
 import SignUpWallpaper from "../source/signup-wallpaper.svg";
 import { useEffect, useState } from "react";
-import { ValidadeEmail, ValidadePassword } from "../helpers/Patterns";
 import { signInEmailAndPassword } from "../helpers/util";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-
-interface Props {
-  setIsLogin: any;
-}
+import { ValidadeInputsSignIn } from "../helpers/factories";
+import { SignInAndUpProps } from "../interfaces/Props";
 
 interface InputValidate {
   email?: boolean;
   password?: boolean;
 }
 
-export function SignIn({ setIsLogin }: Props) {
+export function SignIn({ setIsLogin }: SignInAndUpProps) {
   const { setUser } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -39,7 +36,6 @@ export function SignIn({ setIsLogin }: Props) {
     try {
       const signIn = await signInEmailAndPassword(email, password);
       console.log(signIn);
-      setUser(signIn.user);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -48,23 +44,7 @@ export function SignIn({ setIsLogin }: Props) {
   }
 
   useEffect(() => {
-    if (ValidadeEmail(email)) {
-      setInputValidate((inputValidate) => ({ ...inputValidate, email: true }));
-    } else {
-      setInputValidate((inputValidate) => ({ ...inputValidate, email: false }));
-    }
-
-    if (ValidadePassword(password)) {
-      setInputValidate((inputValidate) => ({
-        ...inputValidate,
-        password: true,
-      }));
-    } else {
-      setInputValidate((inputValidate) => ({
-        ...inputValidate,
-        password: true,
-      }));
-    }
+    ValidadeInputsSignIn(email, password, setInputValidate);
   }, [email, password]);
 
   return (

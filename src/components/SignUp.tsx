@@ -14,6 +14,8 @@ import { ValidadeEmail, ValidadePassword } from "../helpers/Patterns";
 import { useNavigate } from "react-router-dom";
 import { ValidadeInputsSignUp } from "../helpers/factories";
 
+import { SignInAndUpProps } from "../interfaces/Props";
+
 interface Props {
   setIsLogin: any;
 }
@@ -30,7 +32,7 @@ interface inputMessage {
   repeatPassword?: string;
 }
 
-export function SignUp({ setIsLogin }: Props) {
+export function SignUp({ setIsLogin }: SignInAndUpProps) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +57,7 @@ export function SignUp({ setIsLogin }: Props) {
   }
 
   useEffect(() => {
-    ValidadeInputsSignUp(
+    /* ValidadeInputsSignUp(
       email,
       password,
       repeatPassword,
@@ -63,7 +65,7 @@ export function SignUp({ setIsLogin }: Props) {
       setInputValidate,
       inputMessage,
       setInputMessage
-    );
+    ); */
   }, [email, password, repeatPassword]);
 
   return (

@@ -1,14 +1,13 @@
+/* imports */
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+
+/* types */
+import { HeaderProps } from "../interfaces/Props";
+
+/* source */
 import Logo from "../source/logo-fast.svg";
 
-interface Props {
-  isFixed?: boolean;
-}
-
-export function Header({ isFixed }: Props) {
-  const { user } = useAuth();
-
+export function Header({ isFixed }: HeaderProps) {
   return (
     <header
       className={`flex items-center justify-around mt-[40px] transition-all ${
