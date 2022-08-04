@@ -29,7 +29,7 @@ export function SignIn({ setIsLogin }: Props) {
           isInputLabel={true}
           inputLabel="Esqueci minha senha"
         />
-        <button className="w-full bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors">
+        <button className="w-full bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600  ">
           ENTRAR
         </button>
         <p className="text-center mt-2 text-gray-600">
