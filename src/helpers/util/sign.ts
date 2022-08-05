@@ -11,7 +11,7 @@ export const handleSignInEmailAndPasswordUtil = async (
     return signIn;
   } catch (err: any) {
     if (err.code === "auth/user-not-found") {
-      toast.success("Esse usuário não exite, Tente novamente.");
+      toast.error("Este usuário não existe, Tente novamente.");
     }
 
     if (err.code === "auth/wrong-password") {
@@ -26,7 +26,7 @@ export const handleCreateEmailAndPasswordUtil = async (
 ) => {
   try {
     await createUserEmailAndPassword(email, password);
-    toast.error("Conta criada com sucesso!");
+    toast.success("Conta criada com sucesso!");
   } catch (err: any) {
     throw new Error(err.code);
   }
