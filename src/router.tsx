@@ -1,6 +1,6 @@
 /* libs*/
 import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, RouteProps } from "react-router-dom";
 
 /* components */
 import Loading from "./components/Loading";
@@ -14,7 +14,9 @@ const Auth = React.lazy(() =>
   import("./pages/Auth").then(({ Auth }) => ({ default: Auth }))
 );
 
-const RoutesAll = [
+type AppRoute = RouteProps & { isAuth: boolean };
+
+const RoutesAll: AppRoute[] = [
   {
     path: "/",
     Component: () => <Home />,

@@ -23,7 +23,7 @@ import { ValidadeInputsSignIn } from "../helpers/factories";
 import { SignInAndUpProps } from "../interfaces/Props";
 import { InputValidate } from "../interfaces/inputs";
 
-export function SignIn({ setIsLogin }: SignInAndUpProps) {
+export const SignIn: React.FC<SignInAndUpProps> = ({ setIsLogin }) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
