@@ -14,7 +14,7 @@ const Auth = React.lazy(() =>
   import("./pages/Auth").then(({ Auth }) => ({ default: Auth }))
 );
 
-const RoutesAll = [
+/* const RoutesAll = [
   {
     path: "/",
     Component: () => <Home />,
@@ -25,12 +25,12 @@ const RoutesAll = [
     Component: () => <Auth />,
     isAuth: false,
   },
-];
+]; */
 
 export function Router() {
   return (
     <Routes>
-      {RoutesAll.map(({ path, Component }) => (
+      {/* {RoutesAll.map(({ path, Component }) => (
         <Route
           path={path}
           key={path}
@@ -40,7 +40,23 @@ export function Router() {
             </Suspense>
           }
         />
-      ))}
+      ))} */}
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <Suspense fallback={<Loading />}>
+            <Auth />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 }
