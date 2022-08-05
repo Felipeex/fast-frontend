@@ -65,7 +65,7 @@ export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
   }
 
   if (password.length) {
-    if (password.length < 5) {
+    if (password.length < 6) {
       isInputMessage(setInputMessage, {
         password: "Sua senha deve conter pelos menos 6 Dígitos",
       });
@@ -76,6 +76,10 @@ export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
     } else if (!password.match(/[a-z]/)) {
       isInputMessage(setInputMessage, {
         password: "Sua senha deve conter pelos 1 Letra minúscula",
+      });
+    } else if (!password.match(/[0-9]/)) {
+      isInputMessage(setInputMessage, {
+        password: "Sua senha deve conter 1 numero",
       });
     } else if (ValidadePassword(password)) {
       isInputMessage(setInputMessage, {
@@ -91,10 +95,12 @@ export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
       isInputMessage(setInputMessage, {
         repeatPassword: "Senha não sé coincidem",
       });
+      isInputValidate(setInputValidate, { repeatPassword: false });
     } else {
       isInputMessage(setInputMessage, {
         repeatPassword: "",
       });
+      isInputValidate(setInputValidate, { repeatPassword: true });
     }
   } else {
     isInputMessage(setInputMessage, { repeatPassword: "" });

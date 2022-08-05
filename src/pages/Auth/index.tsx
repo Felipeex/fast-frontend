@@ -16,7 +16,7 @@ export function Auth() {
   }, [location]);
 
   return (
-    <main>
+    <main className="pb-5">
       <Header />
       <section className="flex flex-1 items-center justify-center mt-[10vh]">
         {isLogin ? (
