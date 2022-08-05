@@ -16,9 +16,9 @@ export function Auth() {
   }, [location]);
 
   return (
-    <main className="pb-5">
+    <main className="pb-5 overflow-hidden">
       <Header />
-      <section className="flex flex-1 items-center justify-center mt-[10vh]">
+      <section className="w-screen min-h-[85vh] flex items-center justify-center mt-5">
         {isLogin ? (
           <SignIn setIsLogin={setIsLogin} />
         ) : (
