@@ -1,5 +1,5 @@
 /* libs*/
-import { onAuthStateChanged, signOut, User } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
   createContext,
   ReactNode,
