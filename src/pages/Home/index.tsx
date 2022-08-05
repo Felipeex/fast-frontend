@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Header } from "../../components/Header";
-import { signInEmailAndPassword } from "../../helpers/util";
+import { useAuth } from "../../contexts/AuthContext";
 
 import abstractLeft from "../../source/abstract-left.svg";
 import abstractRight from "../../source/abstract-right.svg";
+
 export function Home() {
+  const { Logout } = useAuth();
   const [headerFixed, setHeaderFixed] = useState(false);
 
   function scrollChange() {
@@ -16,6 +18,10 @@ export function Home() {
   }
 
   window.addEventListener("scroll", scrollChange);
+
+  async function handleSignOut() {
+    await Logout();
+  }
 
   return (
     <main id="home">
@@ -38,7 +44,10 @@ export function Home() {
           <br />
           online. Aumente suas vendas e produtividade.
         </p>
-        <button className="bg-green-600 px-[144px] py-[17px] rounded-[28px] font-semibold text-white mt-[60px] hover:bg-green-700 transition-colors">
+        <button
+          className="bg-green-600 px-[144px] py-[17px] rounded-[28px] font-semibold text-white mt-[60px] hover:bg-green-700 transition-colors"
+          onClick={handleSignOut}
+        >
           Começe já
         </button>
       </section>

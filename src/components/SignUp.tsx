@@ -1,19 +1,23 @@
+/* libs*/
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CircleNotch, EnvelopeSimple, Password } from "phosphor-react";
 
+/* components */
 import { Input } from "./Input";
 import { LoginIcon } from "./LoginIcon";
 
+/* source */
 import Apple from "../source/apple-icon.svg";
 import Google from "../source/google-icon.svg";
 import Twitter from "../source/twitter-icon.svg";
 import SignInWallpaper from "../source/signin-wallpaper.svg";
 
+/* helpers */
 import { createUserEmailAndPassword } from "../helpers/util";
-import { useEffect, useState } from "react";
-import { ValidadeEmail, ValidadePassword } from "../helpers/Patterns";
-import { useNavigate } from "react-router-dom";
 import { ValidadeInputsSignUp } from "../helpers/factories";
 
+/* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
 import { inputMessage, InputValidate } from "../interfaces/inputs";
 

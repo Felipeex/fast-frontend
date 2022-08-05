@@ -1,5 +1,7 @@
-/* imports */
+/* libs*/
+import { User } from "phosphor-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 /* types */
 import { HeaderProps } from "../interfaces/Props";
@@ -8,6 +10,9 @@ import { HeaderProps } from "../interfaces/Props";
 import Logo from "../source/logo-fast.svg";
 
 export function Header({ isFixed }: HeaderProps) {
+  const { user } = useAuth();
+  console.log(user);
+
   return (
     <header
       className={`flex items-center justify-around mt-[40px] transition-all ${
@@ -31,19 +36,23 @@ export function Header({ isFixed }: HeaderProps) {
         <a>Blog</a>
       </nav>
 
-      <div>
-        <Link
-          to="/login?type=signIn"
-          className="mr-5 font-medium cursor-pointer"
-        >
-          Fazer Login
-        </Link>
-        <Link to="/login">
-          <button className="bg-black-600 py-[14px] px-[24px] text-white rounded-[30px] font-medium">
-            Cadastrar
-          </button>
-        </Link>
-      </div>
+      {!user ? (
+        <div>
+          <Link
+            to="/login?type=signIn"
+            className="mr-5 font-medium cursor-pointer"
+          >
+            Fazer Login
+          </Link>
+          <Link to="/login">
+            <button className="bg-black-600 py-[14px] px-[24px] text-white rounded-[30px] font-medium">
+              Cadastrar
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div className="bg-green-600 p-7 rounded-full"></div>
+      )}
     </header>
   );
 }

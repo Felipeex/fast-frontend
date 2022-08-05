@@ -57,4 +57,10 @@ export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
   setInputMessage
 ) => {
   ValidadeEmailAndPassword(email, password, setInputValidate);
+
+  if (ValidadePassword(repeatPassword)) {
+    isInputValidate(setInputValidate, { repeatPassword: true });
+  } else {
+    isInputValidate(setInputValidate, { repeatPassword: false });
+  }
 };

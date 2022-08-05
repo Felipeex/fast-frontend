@@ -1,11 +1,15 @@
+/* libs*/
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
+/* components */
 import Loading from "./components/Loading";
 
+/* pages */
 const Home = React.lazy(() =>
   import("./pages/Home").then(({ Home }) => ({ default: Home }))
 );
+
 const Auth = React.lazy(() =>
   import("./pages/Auth").then(({ Auth }) => ({ default: Auth }))
 );

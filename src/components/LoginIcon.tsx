@@ -1,3 +1,4 @@
+/* interfaces */
 import { LoginIconProps } from "../interfaces/Props";
 
 export function LoginIcon({ icon, color }: LoginIconProps) {

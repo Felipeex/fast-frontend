@@ -1,5 +1,8 @@
+/* libs*/
 import { Eye, EyeClosed } from "phosphor-react";
 import { useState } from "react";
+
+/* interfaces */
 import { InputProps } from "../interfaces/Props";
 
 export function Input({

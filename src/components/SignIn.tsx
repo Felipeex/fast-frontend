@@ -1,19 +1,29 @@
+/* libs*/
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CircleNotch, EnvelopeSimple, Password } from "phosphor-react";
 
+/* components */
 import { Input } from "./Input";
 import { LoginIcon } from "./LoginIcon";
 
+/* source */
 import Apple from "../source/apple-icon.svg";
 import Google from "../source/google-icon.svg";
 import Twitter from "../source/twitter-icon.svg";
 import SignUpWallpaper from "../source/signup-wallpaper.svg";
-import { useEffect, useState } from "react";
+
+/* helpers */
 import { signInEmailAndPassword } from "../helpers/util";
-import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 import { ValidadeInputsSignIn } from "../helpers/factories";
+
+/* contexts */
+import { useAuth } from "../contexts/AuthContext";
+
+/* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
 import { InputValidate } from "../interfaces/inputs";
+import { toast } from "react-toastify";
 
 export function SignIn({ setIsLogin }: SignInAndUpProps) {
   const { setUser } = useAuth();
@@ -31,12 +41,18 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
     setLoading(true);
     try {
       const signIn = await signInEmailAndPassword(email, password);
-      console.log(signIn);
-      navigate("/");
-    } catch (err) {
-      console.log(err);
+      setUser(signIn);
+    } catch (err: any) {
+      if (err.code === "auth/user-not-found") {
+        toast.error("Esse usuário não exite, Tente novamente.");
+      }
+
+      if (err.code === "auth/wrong-password") {
+        toast.error("Senha incorreta, Tente novamente.");
+      }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   useEffect(() => {

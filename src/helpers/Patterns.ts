@@ -6,6 +6,6 @@ export function ValidadeEmail(email: string) {
 
 export function ValidadePassword(password: string) {
   const ValidadePassword =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/;
+    /^(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/;
   return password.match(ValidadePassword);
 }
