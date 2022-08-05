@@ -14,12 +14,12 @@ import Twitter from "../source/twitter-icon.svg";
 import SignInWallpaper from "../source/signin-wallpaper.svg";
 
 /* helpers */
-import { createUserEmailAndPassword } from "../helpers/util";
 import { ValidadeInputsSignUp } from "../helpers/factories";
 
 /* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
 import { inputMessage, InputValidate } from "../interfaces/inputs";
+import { handleCreateEmailAndPasswordUtil } from "../helpers/util/sign";
 
 export function SignUp({ setIsLogin }: SignInAndUpProps) {
   const navigate = useNavigate();
@@ -36,12 +36,9 @@ export function SignUp({ setIsLogin }: SignInAndUpProps) {
   ) {
     event.preventDefault();
     setLoading(true);
-    try {
-      await createUserEmailAndPassword(email, password);
+    await handleCreateEmailAndPasswordUtil(email, password).then(() => {
       navigate("/login?type=signIn");
-    } catch (err: any) {
-      console.log(err);
-    }
+    });
     setLoading(false);
   }
 

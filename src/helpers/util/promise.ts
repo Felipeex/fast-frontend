@@ -2,7 +2,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { Auth } from "../services/firebaseConfig";
+import { Auth } from "../../services/firebaseConfig";
 
 export const createUserEmailAndPassword = (email: string, password: string) =>
   new Promise((resolve, reject) => {

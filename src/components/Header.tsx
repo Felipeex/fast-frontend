@@ -11,7 +11,6 @@ import Logo from "../source/logo-fast.svg";
 
 export function Header({ isFixed }: HeaderProps) {
   const { user } = useAuth();
-  console.log(user);
 
   return (
     <header

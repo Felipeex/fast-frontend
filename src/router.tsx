@@ -18,10 +18,12 @@ const RoutesAll = [
   {
     path: "/",
     Component: () => <Home />,
+    isAuth: false,
   },
   {
     path: "/login",
     Component: () => <Auth />,
+    isAuth: false,
   },
 ];
 
