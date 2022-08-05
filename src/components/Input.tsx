@@ -42,7 +42,7 @@ export function Input({
           type={
             inputName === "Senha" ? (isEyeClosed ? "password" : "text") : type
           }
-          className="bg-transparent text-black-700 py-[15px] pr-[190px] placeholder:text-gray-600"
+          className="bg-transparent text-black-700 py-[15px] pr-[90px] placeholder:text-gray-600 xl:pr-[190px]"
           placeholder={inputPlaceholder}
           pattern={inputPattern}
           onChange={handleChange}

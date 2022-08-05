@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { internalError } from "../helpers/util/erros";
 import { Auth } from "../services/firebaseConfig";
 
 interface AuthContextProps {
@@ -37,8 +38,11 @@ export function AuthContextProvider({ children }: AuthContextProps) {
     return subscribe;
   }, []);
 
-  const Logout = () => {
-    return signOut(Auth);
+  const Logout = async () => {
+    return signOut(Auth).catch((err) => {
+      internalError();
+      throw new Error(err);
+    });
   };
 
   return (

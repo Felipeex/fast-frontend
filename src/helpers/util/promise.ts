@@ -2,7 +2,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 import { Auth } from "../../services/firebaseConfig";
 
@@ -32,7 +32,7 @@ export const signInGoogle = () =>
   new Promise((resolve, reject) => {
     const provider = new GoogleAuthProvider();
 
-    signInWithRedirect(Auth, provider)
+    signInWithPopup(Auth, provider)
       .then((userCredential) => {
         resolve(userCredential);
       })

@@ -63,4 +63,40 @@ export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
   } else {
     isInputValidate(setInputValidate, { repeatPassword: false });
   }
+
+  if (password.length) {
+    if (password.length < 5) {
+      isInputMessage(setInputMessage, {
+        password: "Sua senha deve conter pelos menos 6 Dígitos",
+      });
+    } else if (!password.match(/[A-Z]/)) {
+      isInputMessage(setInputMessage, {
+        password: "Sua senha deve conter pelos 1 Letra maiúscula",
+      });
+    } else if (!password.match(/[a-z]/)) {
+      isInputMessage(setInputMessage, {
+        password: "Sua senha deve conter pelos 1 Letra minúscula",
+      });
+    } else if (ValidadePassword(password)) {
+      isInputMessage(setInputMessage, {
+        password: "",
+      });
+    }
+  } else {
+    isInputMessage(setInputMessage, { password: "" });
+  }
+
+  if (repeatPassword.length) {
+    if (repeatPassword !== password) {
+      isInputMessage(setInputMessage, {
+        repeatPassword: "Senha não sé coincidem",
+      });
+    } else {
+      isInputMessage(setInputMessage, {
+        repeatPassword: "",
+      });
+    }
+  } else {
+    isInputMessage(setInputMessage, { repeatPassword: "" });
+  }
 };

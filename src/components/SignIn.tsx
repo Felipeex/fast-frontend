@@ -38,7 +38,8 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
     setLoading(false);
   }
 
-  async function handleSignInGoogle() {
+  async function handleSignInGoogle(event: React.MouseEvent<HTMLElement>) {
+    event.preventDefault();
     await handleSignInGoogleUtil();
   }
 
@@ -49,7 +50,7 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
   return (
     <main className="w-full flex justify-around overflow-hidden">
       <form className="login__animation">
-        <h1 className="font-medium text-[50px]">Fazer Login</h1>
+        <h1 className="font-medium text-[30px] xl:text-[50px]">Fazer Login</h1>
         <Input
           type="email"
           inputName="Email"
@@ -98,10 +99,6 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
 
         <div className="flex gap-4 items-center justify-center mt-6">
           <LoginIcon
-            icon={<img src={Apple} alt="logo apple" />}
-            color="bg-black-700"
-          />
-          <LoginIcon
             icon={<img src={Google} alt="logo google" />}
             color="bg-white"
             click={handleSignInGoogle}
@@ -114,7 +111,7 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
       </form>
       <img
         src={SignUpWallpaper}
-        className="wallpaper__animation"
+        className="wallpaper__animation hidden lg:block"
         alt="wallpaper de criação de conta"
       />
     </main>

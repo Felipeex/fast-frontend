@@ -25,6 +25,12 @@ module.exports = {
           100: "#F9F9FA",
         },
       },
+      screens: {
+        lg: { min: "1150px" },
+        md: { min: "1000px" },
+        sm: { min: "680px" },
+        xl: { min: "535px" },
+      },
     },
   },
   plugins: [],

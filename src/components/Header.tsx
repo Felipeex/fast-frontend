@@ -1,4 +1,5 @@
 /* libs*/
+import { List } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -10,22 +11,21 @@ import Logo from "../source/logo-fast.svg";
 
 export function Header({ isFixed }: HeaderProps) {
   const { user } = useAuth();
-  console.log(user);
 
   return (
     <header
-      className={`flex items-center justify-around mt-[40px] transition-all ${
+      className={`flex items-center justify-between mt-[40px] px-5 md:px-10 transition-all md:justify-around ${
         isFixed ? "fixed top-0 w-full bg-white mt-0 py-[20px]" : ""
       }`}
     >
       <div className="flex items-center gap-1">
         <img src={Logo} className="fill-green-600" alt="fast delivery logo" />
-        <span className="text-green-600 font-bold text-[26px]">
+        <span className="text-green-600 font-bold text-[26px] lg:block md:hidden">
           Fast Delivery
         </span>
       </div>
 
-      <nav className="flex gap-[42px] text-gray-600 ast-none font-medium cursor-pointer">
+      <nav className="hidden gap-[42px] text-gray-600 ast-none font-medium cursor-pointer md:flex">
         <Link to="/" className="active:text-black-700">
           Home
         </Link>
@@ -35,8 +35,10 @@ export function Header({ isFixed }: HeaderProps) {
         <a>Blog</a>
       </nav>
 
+      <List className="text-black-700 md:hidden" size={38} />
+
       {!user ? (
-        <div>
+        <div className="hidden md:block">
           <Link
             to="/login?type=signIn"
             className="mr-5 font-medium cursor-pointer"
@@ -50,7 +52,7 @@ export function Header({ isFixed }: HeaderProps) {
           </Link>
         </div>
       ) : (
-        <div className="bg-green-600 w-12 h-12 rounded-full overflow-hidden">
+        <div className="bg-green-600 w-12 h-12 rounded-full overflow-hidden hidden md:block">
           {user.photoURL ? <img src={user.photoURL} /> : ""}
         </div>
       )}

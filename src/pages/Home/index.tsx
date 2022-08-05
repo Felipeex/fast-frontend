@@ -25,7 +25,7 @@ export function Home() {
   return (
     <main id="home">
       <Header isFixed={headerFixed} />
-      <div className="flex absolute w-full items-center justify-between mt-[230px] px-[10%] z-[-1] select-none">
+      <div className="hidden absolute w-full items-center justify-between mt-[230px] px-[10%] z-[-1] select-none md:flex">
         <img src={abstractLeft} />
         <img src={abstractRight} />
       </div>
@@ -35,16 +35,16 @@ export function Home() {
           headerFixed ? "mt-[190px]" : ""
         }`}
       >
-        <h1 className="font-bold text-[80px] text-center">
+        <h1 className="font-bold text-center text-[30px] xl:text-[70px]">
           Gerencie seu negocio <br /> online
         </h1>
-        <p className="text-center font-normal text-gray-600 mt-[20px] text-xl">
+        <p className="text-center font-normal text-gray-600 text-[10px] xl:text-[20px] sm:text-[30px]">
           Crie seu cardápio, encomendas e Painel administrativo totalmente
           <br />
           online. Aumente suas vendas e produtividade.
         </p>
         <button
-          className="bg-green-600 px-[144px] py-[17px] rounded-[28px] font-semibold text-white mt-[60px] hover:bg-green-700 transition-colors"
+          className="bg-green-600 px-[130px] py-[17px] rounded-[28px] font-semibold text-white md:px-[144px] mt-[60px] hover:bg-green-700 transition-colors"
           onClick={handleSignOut}
         >
           Começe já

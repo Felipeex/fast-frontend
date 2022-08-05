@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { internalError } from "./erros";
 import {
   createUserEmailAndPassword,
   signInEmailAndPassword,
@@ -44,7 +45,7 @@ export const handleSignInGoogleUtil = async () => {
     const signIn = await signInGoogle();
     return signIn;
   } catch (err: any) {
-    toast.error("Opss, ocorreu um erro Internamente em nosso servidor.");
+    internalError();
     throw new Error(err);
   }
 };
