@@ -1,5 +1,4 @@
 /* libs*/
-import { User } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -11,6 +10,7 @@ import Logo from "../source/logo-fast.svg";
 
 export function Header({ isFixed }: HeaderProps) {
   const { user } = useAuth();
+  console.log(user);
 
   return (
     <header
@@ -50,7 +50,9 @@ export function Header({ isFixed }: HeaderProps) {
           </Link>
         </div>
       ) : (
-        <div className="bg-green-600 p-7 rounded-full"></div>
+        <div className="bg-green-600 w-12 h-12 rounded-full overflow-hidden">
+          {user.photoURL ? <img src={user.photoURL} /> : ""}
+        </div>
       )}
     </header>
   );

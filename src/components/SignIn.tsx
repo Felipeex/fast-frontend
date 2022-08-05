@@ -13,18 +13,17 @@ import Twitter from "../source/twitter-icon.svg";
 import SignUpWallpaper from "../source/signup-wallpaper.svg";
 
 /* helpers */
-import { handleSignInEmailAndPasswordUtil } from "../helpers/util/sign";
+import {
+  handleSignInEmailAndPasswordUtil,
+  handleSignInGoogleUtil,
+} from "../helpers/util/sign";
 import { ValidadeInputsSignIn } from "../helpers/factories";
-
-/* contexts */
-import { useAuth } from "../contexts/AuthContext";
 
 /* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
 import { InputValidate } from "../interfaces/inputs";
 
 export function SignIn({ setIsLogin }: SignInAndUpProps) {
-  const { setUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,9 +34,12 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
   ) {
     event.preventDefault();
     setLoading(true);
-    const user = await handleSignInEmailAndPasswordUtil(email, password);
-    setUser(user);
+    await handleSignInEmailAndPasswordUtil(email, password);
     setLoading(false);
+  }
+
+  async function handleSignInGoogle() {
+    await handleSignInGoogleUtil();
   }
 
   useEffect(() => {
@@ -102,6 +104,7 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
           <LoginIcon
             icon={<img src={Google} alt="logo google" />}
             color="bg-white"
+            click={handleSignInGoogle}
           />
           <LoginIcon
             icon={<img src={Twitter} alt="logo twitter" />}

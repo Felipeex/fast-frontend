@@ -3,7 +3,7 @@ import {
   ValidadeEmailAndPassword,
   ValidadeInputsSignInType,
   ValidadeInputsSignUpType,
-} from "../types/inputs";
+} from "../types/inputValidate";
 import { ValidadeEmail, ValidadePassword } from "./Patterns";
 
 export const isInputValidate: isInputValidateType = (

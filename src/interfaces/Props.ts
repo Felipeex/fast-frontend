@@ -20,6 +20,7 @@ export interface HeaderProps {
 export interface LoginIconProps {
   icon: React.ReactNode;
   color: string;
+  click?: () => void;
 }
 
 export interface SignInAndUpProps {

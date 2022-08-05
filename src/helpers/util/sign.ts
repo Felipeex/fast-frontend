@@ -1,5 +1,9 @@
 import { toast } from "react-toastify";
-import { createUserEmailAndPassword, signInEmailAndPassword } from "./promise";
+import {
+  createUserEmailAndPassword,
+  signInEmailAndPassword,
+  signInGoogle,
+} from "./promise";
 
 /* handleSign */
 export const handleSignInEmailAndPasswordUtil = async (
@@ -28,6 +32,19 @@ export const handleCreateEmailAndPasswordUtil = async (
     await createUserEmailAndPassword(email, password);
     toast.success("Conta criada com sucesso!");
   } catch (err: any) {
+    if (err.code === "auth/email-already-in-use") {
+      toast.error("Esse email já foi usado, Tente novamente.");
+    }
     throw new Error(err.code);
+  }
+};
+
+export const handleSignInGoogleUtil = async () => {
+  try {
+    const signIn = await signInGoogle();
+    return signIn;
+  } catch (err: any) {
+    toast.error("Opss, ocorreu um erro Internamente em nosso servidor.");
+    throw new Error(err);
   }
 };

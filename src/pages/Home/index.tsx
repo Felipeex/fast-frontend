@@ -9,6 +9,7 @@ export function Home() {
   const { Logout } = useAuth();
   const [headerFixed, setHeaderFixed] = useState(false);
 
+  window.addEventListener("scroll", scrollChange);
   function scrollChange() {
     if (window.scrollY >= 93) {
       setHeaderFixed(true);
@@ -16,8 +17,6 @@ export function Home() {
       setHeaderFixed(false);
     }
   }
-
-  window.addEventListener("scroll", scrollChange);
 
   async function handleSignOut() {
     await Logout();

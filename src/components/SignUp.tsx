@@ -19,7 +19,10 @@ import { ValidadeInputsSignUp } from "../helpers/factories";
 /* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
 import { inputMessage, InputValidate } from "../interfaces/inputs";
-import { handleCreateEmailAndPasswordUtil } from "../helpers/util/sign";
+import {
+  handleCreateEmailAndPasswordUtil,
+  handleSignInGoogleUtil,
+} from "../helpers/util/sign";
 
 export function SignUp({ setIsLogin }: SignInAndUpProps) {
   const navigate = useNavigate();
@@ -36,10 +39,17 @@ export function SignUp({ setIsLogin }: SignInAndUpProps) {
   ) {
     event.preventDefault();
     setLoading(true);
-    await handleCreateEmailAndPasswordUtil(email, password).then(() => {
-      navigate("/login?type=signIn");
-    });
-    setLoading(false);
+    await handleCreateEmailAndPasswordUtil(email, password)
+      .then(() => {
+        navigate("/login?type=signIn");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
+  async function handleSignInGoogle() {
+    await handleSignInGoogleUtil();
   }
 
   useEffect(() => {
@@ -117,7 +127,11 @@ export function SignUp({ setIsLogin }: SignInAndUpProps) {
 
         <div className="flex gap-4 items-center justify-center mt-6">
           <LoginIcon icon={<img src={Apple} />} color="bg-black-700" />
-          <LoginIcon icon={<img src={Google} />} color="bg-white" />
+          <LoginIcon
+            icon={<img src={Google} />}
+            color="bg-white"
+            click={handleSignInGoogle}
+          />
           <LoginIcon icon={<img src={Twitter} />} color="bg-blue-800" />
         </div>
       </form>
