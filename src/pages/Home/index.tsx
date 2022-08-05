@@ -49,6 +49,7 @@ export function Home() {
         >
           Começe já
         </button>
+        botão usando para sair da conta (DEV).
       </section>
     </main>
   );
