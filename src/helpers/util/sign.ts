@@ -22,6 +22,7 @@ export const handleSignInEmailAndPasswordUtil = async (
     if (err.code === "auth/wrong-password") {
       toast.error("Senha incorreta, Tente novamente.");
     }
+    throw new Error(err.code);
   }
 };
 

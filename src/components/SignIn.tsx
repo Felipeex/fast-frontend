@@ -22,8 +22,10 @@ import { ValidadeInputsSignIn } from "../helpers/factories";
 /* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
 import { InputValidate } from "../interfaces/inputs";
+import { useNavigate } from "react-router-dom";
 
 export function SignIn({ setIsLogin }: SignInAndUpProps) {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +36,13 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
   ) {
     event.preventDefault();
     setLoading(true);
-    await handleSignInEmailAndPasswordUtil(email, password);
+    await handleSignInEmailAndPasswordUtil(email, password)
+      .then(() => {
+        navigate("/");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
     setLoading(false);
   }
 
