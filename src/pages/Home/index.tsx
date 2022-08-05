@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Header } from "../../components/Header";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -9,14 +9,20 @@ export function Home() {
   const { Logout } = useAuth();
   const [headerFixed, setHeaderFixed] = useState(false);
 
-  window.addEventListener("scroll", scrollChange);
-  function scrollChange() {
+  const scrollChange = useCallback(() => {
     if (window.scrollY >= 93) {
       setHeaderFixed(true);
     } else {
       setHeaderFixed(false);
     }
-  }
+  }, [window.scrollY])
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollChange);
+    return () => {
+      window.removeEventListener("scroll", scrollChange);
+    }
+  }, [scrollChange]);
 
   async function handleSignOut() {
     await Logout();
