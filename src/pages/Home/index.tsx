@@ -5,18 +5,12 @@ import { useAuth } from "../../contexts/AuthContext";
 import abstractLeft from "../../source/abstract-left.svg";
 import abstractRight from "../../source/abstract-right.svg";
 
-export function Home() {
-  const { Logout } = useAuth();
-  const [headerFixed, setHeaderFixed] = useState(false);
+interface Props {
+  headerFixed?: boolean;
+}
 
-  window.addEventListener("scroll", scrollChange);
-  function scrollChange() {
-    if (window.scrollY >= 93) {
-      setHeaderFixed(true);
-    } else {
-      setHeaderFixed(false);
-    }
-  }
+export function Home({ headerFixed }: Props) {
+  const { Logout } = useAuth();
 
   async function handleSignOut() {
     await Logout();
@@ -24,7 +18,6 @@ export function Home() {
 
   return (
     <main id="home">
-      <Header isFixed={headerFixed} />
       <div className="hidden absolute w-full items-center justify-between mt-[230px] px-[10%] z-[-1] select-none md:flex">
         <img src={abstractLeft} />
         <img src={abstractRight} />

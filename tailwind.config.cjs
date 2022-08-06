@@ -22,7 +22,12 @@ module.exports = {
 
         gray: {
           600: "#777E8B",
+          200: "#C9C9C9",
           100: "#F9F9FA",
+        },
+
+        red: {
+          500: "#FF4848",
         },
       },
       screens: {

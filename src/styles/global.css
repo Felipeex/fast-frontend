@@ -30,6 +30,20 @@ input {
   animation: spin 1s linear infinite;
 }
 
+.menu {
+  animation: 0.4s menu;
+}
+
+@keyframes menu {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);

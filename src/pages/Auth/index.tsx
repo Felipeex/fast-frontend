@@ -17,7 +17,6 @@ export function Auth() {
 
   return (
     <main className="pb-5 overflow-hidden">
-      <Header />
       <section className="w-screen min-h-[85vh] flex items-center justify-center mt-5">
         {isLogin ? (
           <SignIn setIsLogin={setIsLogin} />
