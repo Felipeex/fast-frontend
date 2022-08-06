@@ -1,13 +1,34 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { forwardRef, Fragment } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { NavLinkProps } from "../interfaces/Props";
 
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
-}
+const NavLink = forwardRef(({ title, path }: NavLinkProps, ref: any) => {
+  const location = useLocation();
+  return (
+    <Link to={path}>
+      <div
+        ref={ref}
+        className={`bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm ${
+          location.pathname === path
+            ? "border-l-8 border-green-600"
+            : "opacity-50"
+        } text-white`}
+      >
+        {title}
+      </div>
+    </Link>
+  );
+});
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, Logout } = useAuth();
+
+  async function handleSignOut() {
+    await Logout();
+  }
+
   return (
     <Menu as="div" className="relative text-left hidden md:block">
       <div>
@@ -35,35 +56,26 @@ export function Profile() {
               </div>
               <span className="text-white ml-2 font-medium">
                 {user.displayName ? user.displayName : "Sem nome"} <br />{" "}
-                <p className="font-normal text-gray-200">{user?.email}</p>
+                <p className="font-normal text-gray-200 text-xs">
+                  {user?.email}
+                </p>
               </span>
             </div>
           </Menu.Item>
 
           <div className="flex gap-2 flex-col mt-4">
             <Menu.Item>
-              <div className="bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm border-l-8 border-green-600 text-white">
-                Home
-              </div>
+              <NavLink path="/dashboard" title="Dashboard" />
             </Menu.Item>
 
-            <Menu.Item>
-              <div className="bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm border-l-8 border-green-600 text-white">
-                Home
-              </div>
-            </Menu.Item>
-
-            <Menu.Item>
-              <div className="bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm border-l-8 border-green-600 text-white">
-                Home
-              </div>
-            </Menu.Item>
-
-            <Menu.Item>
-              <div className="border border-red-500 py-4 rounded-lg px-6 max-w-sm text-center text-red-500 hover:bg-red-500 hover:text-black-600 font-medium cursor-pointer">
+            <Menu.Button>
+              <div
+                onClick={handleSignOut}
+                className="border border-red-500 py-4 rounded-lg px-6 w-[200px] text-center text-red-500 hover:bg-red-500 hover:text-black-600 font-medium cursor-pointer"
+              >
                 SAIR
               </div>
-            </Menu.Item>
+            </Menu.Button>
           </div>
         </div>
       </Transition>

@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Header } from "../../components/Header";
 import { useAuth } from "../../contexts/AuthContext";
 
 import abstractLeft from "../../source/abstract-left.svg";

@@ -6,15 +6,20 @@ import { useAuth } from "../contexts/AuthContext";
 
 /* source */
 import Logo from "../source/logo-fast.svg";
+import { NavLink } from "./NavLink";
 import { Profile } from "./Profile";
 
 export function Header() {
-  const { user } = useAuth();
-  console.log(user);
+  const { user, Logout } = useAuth();
+
   const [isHamburger, setIsHamburger] = useState(false);
 
   function handleHamburger() {
     setIsHamburger(!isHamburger);
+  }
+
+  async function handleSignOut() {
+    await Logout();
   }
 
   return (
@@ -47,21 +52,21 @@ export function Header() {
             </div>
           )}
 
-          <div className="bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm border-l-8 border-green-600">
-            Home
-          </div>
+          <NavLink path="/" title="Home" />
+          {user ? (
+            <>
+              <NavLink path="/dashboard" title="Dashboard" />
 
-          <div className="bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm border-l-8 border-green-600">
-            Home
-          </div>
-
-          <div className="bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm border-l-8 border-green-600">
-            Home
-          </div>
-
-          <div className="border border-red-500 py-4 rounded-lg px-6 max-w-sm text-center text-red-500 hover:bg-red-500 hover:text-black-600 font-medium cursor-pointer">
-            SAIR
-          </div>
+              <div
+                onClick={handleSignOut}
+                className="border border-red-500 py-4 rounded-lg px-6 max-w-sm text-center text-red-500 hover:bg-red-500 hover:text-black-600 font-medium cursor-pointer"
+              >
+                SAIR
+              </div>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       )}
       <header

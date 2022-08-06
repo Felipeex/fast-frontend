@@ -8,7 +8,6 @@ import { Input } from "./Input";
 import { LoginIcon } from "./LoginIcon";
 
 /* source */
-import Apple from "../source/apple-icon.svg";
 import Google from "../source/google-icon.svg";
 import Twitter from "../source/twitter-icon.svg";
 import SignInWallpaper from "../source/signin-wallpaper.svg";

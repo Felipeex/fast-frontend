@@ -26,3 +26,8 @@ export interface LoginIconProps {
 export interface SignInAndUpProps {
   setIsLogin: any;
 }
+
+export interface NavLinkProps {
+  path: string;
+  title: string;
+}
