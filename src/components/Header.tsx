@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 /* source */
 import Logo from "../source/logo-fast.svg";
+import { Profile } from "./Profile";
 
 export function Header() {
   const { user } = useAuth();
@@ -111,9 +112,7 @@ export function Header() {
             </Link>
           </div>
         ) : (
-          <div className="bg-green-600 w-12 h-12 rounded-full overflow-hidden hidden md:block">
-            {user.photoURL ? <img src={user.photoURL} /> : ""}
-          </div>
+          <Profile />
         )}
       </header>
       <Outlet />
