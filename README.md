@@ -8,7 +8,9 @@
 
 Esse projeto tem como finalidade entregar a melhor experiência de usuário, com toda responsividade e métodos para melhor experiência, Sendo assim entregando algo de qualidade ao cliente.
 Projeto feito totalmente por mim, desde design/ui/ux e experiência de usuário ao código. Prentendo adicionar pequenas atualizações e refaturando todo o código.
+
 ### Também quero adicionar
+
 - Dashboard
 - Paineis de admin
 - Configuração de perfil
@@ -28,6 +30,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Phosphor
 - Tailwind
 - Toastify
+- headlessui
 
 ## 🎨 UI/UX
+
 https://www.figma.com/file/yxe9nW5Bf49jDrYx3KtGvR/Fast---Design-UI?node-id=0%3A1
