@@ -16,12 +16,14 @@ interface AuthContextProps {
 
 type AuthContextType = {
   user: any;
+  loading: boolean;
   setUser: (newState: any) => void;
   Logout: () => any;
 };
 
 const initialState = {
   user: {},
+  loading: true,
   setUser: () => {},
   Logout: () => {},
 };
@@ -30,10 +32,13 @@ export const AuthContext = createContext<AuthContextType>(initialState);
 
 export function AuthContextProvider({ children }: AuthContextProps) {
   const [user, setUser] = useState(initialState.user);
+  const [loading, setLoading] = useState(initialState.loading);
 
   useEffect(() => {
+    setLoading(true);
     const subscribe = onAuthStateChanged(Auth, (currentUser: any) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return subscribe;
   }, []);
@@ -46,7 +51,7 @@ export function AuthContextProvider({ children }: AuthContextProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, Logout }}>
+    <AuthContext.Provider value={{ user, loading, setUser, Logout }}>
       {children}
     </AuthContext.Provider>
   );
