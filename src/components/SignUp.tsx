@@ -49,7 +49,13 @@ export function SignUp({ setIsLogin }: SignInAndUpProps) {
 
   async function handleSignInGoogle(event: React.MouseEvent<HTMLElement>) {
     event.preventDefault();
-    await handleSignInGoogleUtil();
+    await handleSignInGoogleUtil()
+      .then(() => {
+        navigate("/");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
