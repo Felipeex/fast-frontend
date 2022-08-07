@@ -10,7 +10,7 @@ const NavLink = forwardRef(({ title, path }: NavLinkProps, ref: any) => {
     <Link to={path}>
       <div
         ref={ref}
-        className={`bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 max-w-sm ${
+        className={`bg-gradient-to-r from-[#1E1E22] py-4 rounded-lg px-6 ${
           location.pathname === path
             ? "border-l-8 border-green-600"
             : "opacity-50"
@@ -48,7 +48,7 @@ export function Profile() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <div className="p-3 origin-top-right absolute right-0 bg-black-600 rounded-lg">
+        <div className="p-3 origin-top-right absolute right-0 bg-black-600 rounded-lg min-w-[300px]">
           <Menu.Item>
             <div className="flex items-center">
               <div className="bg-green-600 w-12 h-12 rounded-full overflow-hidden flex">
@@ -65,13 +65,17 @@ export function Profile() {
 
           <div className="flex gap-2 flex-col mt-4">
             <Menu.Item>
+              <NavLink path="/" title="Home" />
+            </Menu.Item>
+
+            <Menu.Item>
               <NavLink path="/dashboard" title="Dashboard" />
             </Menu.Item>
 
             <Menu.Button>
               <div
                 onClick={handleSignOut}
-                className="border border-red-500 py-4 rounded-lg px-6 w-[200px] text-center text-red-500 hover:bg-red-500 hover:text-black-600 font-medium cursor-pointer"
+                className="border border-red-500 py-4 rounded-lg px-6 max-w-sm text-center text-red-500 hover:bg-red-500 hover:text-black-600 font-medium cursor-pointer"
               >
                 SAIR
               </div>
