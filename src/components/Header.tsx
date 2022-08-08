@@ -1,4 +1,4 @@
-/* libs*/
+/* libs */
 import { List } from "phosphor-react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -31,10 +31,11 @@ export function Header() {
               <Link
                 to="/login?type=signIn"
                 className="mr-5 font-medium cursor-pointer border py-[14px] px-[24px] rounded-[30px] hover:text-black-600 hover:bg-white transition-colors"
+                onClick={handleHamburger}
               >
                 Fazer Login
               </Link>
-              <Link to="/login">
+              <Link to="/login" onClick={handleHamburger}>
                 <button className="bg-black-700 py-[14px] px-[24px] text-white rounded-[30px] font-medium">
                   Cadastrar
                 </button>
@@ -52,10 +53,14 @@ export function Header() {
             </div>
           )}
 
-          <NavLink path="/" title="Home" />
+          <NavLink path="/" title="Home" onClick={handleHamburger} />
           {user ? (
             <>
-              <NavLink path="/dashboard" title="Dashboard" />
+              <NavLink
+                path="/dashboard"
+                title="Dashboard"
+                onClick={handleHamburger}
+              />
 
               <div
                 onClick={handleSignOut}

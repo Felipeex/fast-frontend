@@ -1,13 +1,11 @@
+/* libs */
 import { useAuth } from "../../contexts/AuthContext";
 
+/* source */
 import abstractLeft from "../../source/abstract-left.svg";
 import abstractRight from "../../source/abstract-right.svg";
 
-interface Props {
-  headerFixed?: boolean;
-}
-
-export function Home({ headerFixed }: Props) {
+export function Home() {
   const { Logout } = useAuth();
 
   async function handleSignOut() {
@@ -21,11 +19,7 @@ export function Home({ headerFixed }: Props) {
         <img src={abstractRight} />
       </div>
 
-      <section
-        className={`mt-[100px] flex flex-col items-center ${
-          headerFixed ? "mt-[190px]" : ""
-        }`}
-      >
+      <section className={`mt-[100px] flex flex-col items-center`}>
         <h1 className="font-bold text-center text-[30px] xl:text-[70px]">
           Gerencie seu negocio <br /> online
         </h1>

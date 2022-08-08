@@ -1,5 +1,6 @@
-/* libs*/
+/* libs */
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CircleNotch, EnvelopeSimple, Password } from "phosphor-react";
 
 /* components */
@@ -21,7 +22,6 @@ import { ValidadeInputsSignIn } from "../helpers/factories";
 /* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
 import { InputValidate } from "../interfaces/inputs";
-import { useNavigate } from "react-router-dom";
 
 export function SignIn({ setIsLogin }: SignInAndUpProps) {
   const navigate = useNavigate();

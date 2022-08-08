@@ -1,10 +1,8 @@
-import { ReactNode } from "react";
-
 export interface InputProps {
   type: string;
   inputName: string;
   inputPlaceholder: string;
-  inputIcon: ReactNode;
+  inputIcon: React.ReactNode;
   inputPattern?: string;
   inputLabel?: string;
   isInputLabel?: boolean;
@@ -30,4 +28,5 @@ export interface SignInAndUpProps {
 export interface NavLinkProps {
   path: string;
   title: string;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }

@@ -1,6 +1,8 @@
+/* libs */
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
+/* components */
 import { SignIn } from "../../components/SignIn";
 import { SignUp } from "../../components/SignUp";
 

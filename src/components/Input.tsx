@@ -1,4 +1,4 @@
-/* libs*/
+/* libs */
 import { Eye, EyeClosed } from "phosphor-react";
 import { useState } from "react";
 
