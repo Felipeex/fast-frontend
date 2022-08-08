@@ -2,6 +2,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { forwardRef, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { RoutesAll } from "../config/routesConfig";
 
 /* contexts */
 import { useAuth } from "../contexts/AuthContext";
@@ -69,13 +70,15 @@ export function Profile() {
           </Menu.Item>
 
           <div className="flex gap-2 flex-col mt-4">
-            <Menu.Item>
-              <NavLink path="/" title="Home" />
-            </Menu.Item>
-
-            <Menu.Item>
-              <NavLink path="/dashboard" title="Dashboard" />
-            </Menu.Item>
+            {RoutesAll.map((index) =>
+              index.isRouteVisible ? (
+                <Menu.Item key={index.path}>
+                  <NavLink path={index.path} title={index.title} />
+                </Menu.Item>
+              ) : (
+                ""
+              )
+            )}
 
             <Menu.Button>
               <div

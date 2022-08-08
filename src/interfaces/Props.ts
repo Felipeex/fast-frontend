@@ -30,3 +30,9 @@ export interface NavLinkProps {
   title: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
+
+export interface hamburgerProps {
+  isHamburger: boolean;
+  handleHamburger: () => void;
+  handleSignOut: () => void;
+}
