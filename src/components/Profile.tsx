@@ -2,12 +2,14 @@
 import { Menu, Transition } from "@headlessui/react";
 import { forwardRef, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
+
+/* config */
 import { RoutesAll } from "../config/routesConfig";
 
 /* contexts */
 import { useAuth } from "../contexts/AuthContext";
-/* interfaces */
 
+/* interfaces */
 import { NavLinkProps } from "../interfaces/Props";
 
 const NavLink = forwardRef(({ title, path }: NavLinkProps, ref: any) => {

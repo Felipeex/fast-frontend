@@ -13,7 +13,7 @@ import Twitter from "../source/twitter-icon.svg";
 import SignInWallpaper from "../source/signin-wallpaper.svg";
 
 /* helpers */
-import { ValidadeInputsSignUp } from "../helpers/factories";
+import { ValidadeInputsSignUp } from "../lib/inputValidate";
 
 /* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";

@@ -2,13 +2,13 @@
 import { List } from "phosphor-react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { RoutesAll } from "../config/routesConfig";
+
+/* contexts */
 import { useAuth } from "../contexts/AuthContext";
 
 /* source */
 import Logo from "../source/logo-fast.svg";
 import { Hamburger } from "./Hamburger";
-import { NavLink } from "./NavLink";
 import { Profile } from "./Profile";
 
 export function Header() {

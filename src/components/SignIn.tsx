@@ -17,7 +17,7 @@ import {
   handleSignInEmailAndPasswordUtil,
   handleSignInGoogleUtil,
 } from "../helpers/util/sign";
-import { ValidadeInputsSignIn } from "../helpers/factories";
+import { ValidadeInputsSignIn } from "../lib/inputValidate";
 
 /* interfaces */
 import { SignInAndUpProps } from "../interfaces/Props";
