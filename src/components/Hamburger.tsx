@@ -17,6 +17,7 @@ export function Hamburger({
   handleSignOut,
 }: hamburgerProps) {
   const { user } = useAuth();
+
   return (
     <>
       {isHamburger && (

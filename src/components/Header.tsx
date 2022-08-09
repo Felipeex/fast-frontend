@@ -1,7 +1,7 @@
 /* libs */
 import { List } from "phosphor-react";
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 /* contexts */
 import { useAuth } from "../contexts/AuthContext";
@@ -13,6 +13,7 @@ import { Profile } from "./Profile";
 
 export function Header() {
   const { user, Logout } = useAuth();
+  const location = useLocation();
 
   const [isHamburger, setIsHamburger] = useState(false);
 
@@ -50,10 +51,16 @@ export function Header() {
         <nav className="hidden gap-[42px] text-gray-600 ast-none font-medium cursor-pointer md:flex">
           <Link
             to="/"
-            className="text-black-700 flex flex-col items-center justify-center relative"
+            className={`${
+              location.pathname === "/" ? "text-black-700" : ""
+            } flex flex-col items-center justify-center relative`}
           >
             Home
-            <div className="w-[6px] h-[6px] bg-green-600 rounded-full absolute -bottom-2" />
+            {location.pathname === "/" ? (
+              <div className="w-[6px] h-[6px] bg-green-600 rounded-full absolute -bottom-2" />
+            ) : (
+              ""
+            )}
           </Link>
           <a>Ferramentas</a>
           <a>Planos</a>
