@@ -6,7 +6,6 @@ import {
   signInGoogle,
 } from "./promise";
 
-/* handleSign */
 export const handleSignInEmailAndPasswordUtil = async (
   email: string,
   password: string

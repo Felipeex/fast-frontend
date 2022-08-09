@@ -48,8 +48,12 @@ export function Header() {
           </div>
         </Link>
         <nav className="hidden gap-[42px] text-gray-600 ast-none font-medium cursor-pointer md:flex">
-          <Link to="/" className="active:text-black-700">
+          <Link
+            to="/"
+            className="text-black-700 flex flex-col items-center justify-center relative"
+          >
             Home
+            <div className="w-[6px] h-[6px] bg-green-600 rounded-full absolute -bottom-2" />
           </Link>
           <a>Ferramentas</a>
           <a>Planos</a>

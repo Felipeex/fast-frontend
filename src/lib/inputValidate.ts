@@ -3,7 +3,7 @@ import {
   ValidadeInputsSignInType,
   ValidadeInputsSignUpType,
 } from "../types/inputValidate";
-import { ValidadeEmail, ValidadePassword } from "../helpers/Patterns";
+import { ValidadeEmail, ValidadePassword } from "../helpers/patterns";
 import { isInputMessage, isInputValidate } from "../helpers/factories";
 
 const ValidadeEmailAndPassword: ValidadeEmailAndPassword = (
