@@ -1,17 +1,8 @@
-/* libs */
-import { useAuth } from "../../contexts/AuthContext";
-
 /* source */
 import abstractLeft from "../../source/abstract-left.svg";
 import abstractRight from "../../source/abstract-right.svg";
 
 export function Home() {
-  const { Logout } = useAuth();
-
-  async function handleSignOut() {
-    await Logout();
-  }
-
   return (
     <main id="home">
       <div className="hidden absolute w-full items-center justify-between mt-[230px] px-[10%] z-[-1] select-none md:flex">
@@ -28,10 +19,7 @@ export function Home() {
           <br />
           online. Aumente suas vendas e produtividade.
         </p>
-        <button
-          className="bg-green-600 px-[130px] py-[17px] rounded-[28px] font-semibold text-white md:px-[144px] mt-[60px] hover:bg-green-700 transition-colors"
-          onClick={handleSignOut}
-        >
+        <button className="bg-green-600 px-[130px] py-[17px] rounded-[28px] font-semibold text-white md:px-[144px] mt-[60px] hover:bg-green-700 transition-colors">
           Começe já
         </button>
       </section>
