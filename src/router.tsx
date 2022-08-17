@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 /* config */
-import { RoutesAll } from "./config/routesConfig";
+import { RoutesAll } from "./constants/routesConfig";
 
 /* components */
 import { Header } from "./components/Header";

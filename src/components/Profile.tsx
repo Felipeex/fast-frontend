@@ -4,7 +4,7 @@ import { forwardRef, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 /* config */
-import { RoutesAll } from "../config/routesConfig";
+import { RoutesAll } from "../constants/routesConfig";
 
 /* contexts */
 import { useAuth } from "../contexts/AuthContext";
