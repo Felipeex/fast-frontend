@@ -5,6 +5,7 @@ import {
 } from "../types/inputValidate";
 import { ValidadeEmail, ValidadePassword } from "../helpers/patterns";
 import { isInputMessage, isInputValidate } from "../helpers/factories";
+import { passwordMessage } from "../constants/messageConfig";
 
 const ValidadeEmailAndPassword: ValidadeEmailAndPassword = (
   email,
@@ -47,28 +48,34 @@ export const ValidadeInputsSignUp: ValidadeInputsSignUpType = (
     isInputValidate(setInputValidate, { repeatPassword: false });
   }
 
+  const {
+    passwordLength,
+    passwordLowerCase,
+    passwordUpperCase,
+    passwordNumber,
+  } = passwordMessage;
+
   if (password.length) {
-    if (password.length < 6) {
-      isInputMessage(setInputMessage, {
-        password: "Sua senha deve conter pelos menos 6 Dígitos",
+    if (password.length < 6)
+      return isInputMessage(setInputMessage, {
+        password: passwordLength,
       });
-    } else if (!password.match(/[A-Z]/)) {
-      isInputMessage(setInputMessage, {
-        password: "Sua senha deve conter pelos 1 Letra maiúscula",
+    if (!password.match(/[A-Z]/))
+      return isInputMessage(setInputMessage, {
+        password: passwordUpperCase,
       });
-    } else if (!password.match(/[a-z]/)) {
-      isInputMessage(setInputMessage, {
-        password: "Sua senha deve conter pelos 1 Letra minúscula",
+    if (!password.match(/[a-z]/))
+      return isInputMessage(setInputMessage, {
+        password: passwordLowerCase,
       });
-    } else if (!password.match(/[0-9]/)) {
-      isInputMessage(setInputMessage, {
-        password: "Sua senha deve conter 1 numero",
+    if (!password.match(/[0-9]/))
+      return isInputMessage(setInputMessage, {
+        password: passwordNumber,
       });
-    } else if (ValidadePassword(password)) {
-      isInputMessage(setInputMessage, {
+    if (ValidadePassword(password))
+      return isInputMessage(setInputMessage, {
         password: "",
       });
-    }
   } else {
     isInputMessage(setInputMessage, { password: "" });
   }
