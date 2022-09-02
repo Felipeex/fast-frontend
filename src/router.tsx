@@ -2,13 +2,13 @@
 import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-/* config */
+/* constants */
 import { RoutesAll } from "./constants/routesConfig";
 
 /* components */
 import { Header } from "./components/Header";
 import { PrivateRoute } from "./components/PrivateRoute";
-import Loading from "./components/Loading";
+import { Loading } from "./components/Loading";
 
 export function Router() {
   return (

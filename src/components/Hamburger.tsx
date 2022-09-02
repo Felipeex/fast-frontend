@@ -26,13 +26,13 @@ export function Hamburger({
             <div className="mb-5">
               <Link
                 to="/login?type=signIn"
-                className="mr-5 font-medium cursor-pointer border py-[14px] px-[24px] rounded-[30px] hover:text-black-600 hover:bg-white transition-colors"
+                className="mr-5 font-medium cursor-pointer border py-4 px-6 rounded-[30px] hover:text-black-600 hover:bg-white transition-colors"
                 onClick={handleHamburger}
               >
                 Fazer Login
               </Link>
               <Link to="/login" onClick={handleHamburger}>
-                <button className="bg-black-700 py-[14px] px-[24px] text-white rounded-[30px] font-medium">
+                <button className="bg-black-700 py-4 px-6 text-white rounded-[30px] font-medium">
                   Cadastrar
                 </button>
               </Link>

@@ -63,7 +63,7 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
   return (
     <main className="w-full flex justify-around overflow-hidden">
       <form className="login__animation">
-        <h1 className="font-medium text-[30px] xl:text-[50px]">Fazer Login</h1>
+        <h1 className="font-medium text-3xl xl:text-[50px]">Fazer Login</h1>
         <Input
           type="email"
           inputName="Email"
@@ -83,7 +83,7 @@ export function SignIn({ setIsLogin }: SignInAndUpProps) {
           inputValidate={inputValidate?.password}
         />
         <button
-          className="w-full flex items-center justify-center bg-green-600 py-4 rounded-[5px] font-medium text-white mt-[55px] hover:bg-green-700 transition-colors outline-gray-600 disabled:opacity-50 disabled:hover:bg-green-600"
+          className="w-full flex items-center justify-center bg-green-600 py-4 rounded-[5px] font-medium text-white mt-14 hover:bg-green-700 transition-colors outline-gray-600 disabled:opacity-50 disabled:hover:bg-green-600"
           disabled={
             loading ? true : !inputValidate.email || !inputValidate.password
           }

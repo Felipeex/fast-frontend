@@ -34,7 +34,7 @@ export function Header() {
       />
 
       <header
-        className={`flex items-center justify-between pt-[40px] px-5 md:px-10 transition-all md:justify-around`}
+        className={`flex items-center justify-between pt-10 px-5 md:px-10 transition-all md:justify-around`}
       >
         <Link to="/">
           <div className="flex items-center gap-1">
@@ -43,12 +43,12 @@ export function Header() {
               className="fill-green-600"
               alt="fast delivery logo"
             />
-            <span className="text-green-600 font-bold text-[26px] lg:block md:hidden">
+            <span className="text-green-600 font-bold text-2xl lg:block md:hidden">
               Fast Delivery
             </span>
           </div>
         </Link>
-        <nav className="hidden gap-[42px] text-gray-600 ast-none font-medium cursor-pointer md:flex">
+        <nav className="hidden gap-11 text-gray-600 ast-none font-medium cursor-pointer md:flex">
           <Link
             to="/"
             className={`${
@@ -57,7 +57,7 @@ export function Header() {
           >
             Home
             {location.pathname === "/" ? (
-              <div className="w-[6px] h-[6px] bg-green-600 rounded-full absolute -bottom-2" />
+              <div className="w-2 h-2 bg-green-600 rounded-full absolute -bottom-2" />
             ) : (
               ""
             )}
@@ -85,7 +85,7 @@ export function Header() {
               Fazer Login
             </Link>
             <Link to="/login">
-              <button className="bg-black-600 py-[14px] px-[24px] text-white rounded-[30px] font-medium">
+              <button className="bg-black-600 py-3 px-6 text-white rounded-3xl font-medium">
                 Cadastrar
               </button>
             </Link>
